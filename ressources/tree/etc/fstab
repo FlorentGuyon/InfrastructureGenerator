@@ -1,0 +1,24 @@
+
+#
+# /etc/fstab
+# Created by anaconda on Mon Oct 17 15:32:01 2022
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/vg_root-lv_root /                       ext4    defaults        1 1
+UUID=5dd9e9df-9331-430b-b939-601287ec9a1e /boot                   ext4    defaults        1 2
+UUID=560B-D8AF          /boot/efi               vfat    nosuid,nodev,noexec 0 2
+/dev/mapper/vg_root-lv_data /data                   ext4    nosuid,nodev,noexec 1 2
+/dev/mapper/vg_root-lv_home /home                   ext4    nosuid,nodev,noexec 1 2
+/dev/mapper/vg_root-lv_opt /opt                    ext4    nosuid,nodev    1 2
+/dev/mapper/vg_root-lv_srv /srv                    ext4    nosuid,nodev    1 2
+tmpfs                   /tmp                    tmpfs   nosuid,nodev,noexec,size=1024m 0 0
+/dev/mapper/vg_root-lv_usr /usr                    ext4    nodev           1 2
+/dev/mapper/vg_root-lv_var /var                    ext4    nosuid,nodev,noexec 1 2
+/dev/mapper/vg_root-lv_var--log /var/log                ext4    nosuid,nodev,noexec 1 2
+/dev/mapper/vg_root-lv_tmp /var/tmp                ext4    nosuid,nodev,noexec 1 2
+/dev/mapper/cryptSwap   swap                    swap    sw                        0 0

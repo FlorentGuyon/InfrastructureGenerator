@@ -1,0 +1,5 @@
+[Veeam]
+name=Veeam
+baseurl=file:///mnt/usb/DEPOTS/repository.veeam.com/.private/rpm/el/8/x86_64/
+gpgcheck=0
+enabled=1

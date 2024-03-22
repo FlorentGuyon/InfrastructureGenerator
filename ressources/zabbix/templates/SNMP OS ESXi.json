@@ -1,0 +1,660 @@
+{
+    "zabbix_export": {
+        "version": "5.2",
+        "date": "2022-06-21T12:11:28Z",
+        "groups": [
+            {
+                "name": "Templates"
+            }
+        ],
+        "templates": [
+            {
+                "template": "SNMP OS ESXi",
+                "name": "SNMP OS ESXi",
+                "groups": [
+                    {
+                        "name": "Templates"
+                    }
+                ],
+                "applications": [
+                    {
+                        "name": "Disk partitions"
+                    },
+                    {
+                        "name": "Environment"
+                    },
+                    {
+                        "name": "General"
+                    },
+                    {
+                        "name": "Interfaces"
+                    },
+                    {
+                        "name": "Memory"
+                    },
+                    {
+                        "name": "Processors"
+                    },
+                    {
+                        "name": "Virtual Machines"
+                    }
+                ],
+                "items": [
+                    {
+                        "name": "Device name",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-MIB::sysName.0",
+                        "key": "sysName",
+                        "delay": "3600",
+                        "history": "7d",
+                        "trends": "0",
+                        "value_type": "CHAR",
+                        "description": "An administratively-assigned name for this managed node. By convention, this is the node's fully-qualified domain name.  If the name is unknown, the value is the zero-length string.",
+                        "inventory_link": "NAME",
+                        "applications": [
+                            {
+                                "name": "General"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Device uptime",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-MIB::sysUpTime.0",
+                        "key": "sysUpTime",
+                        "delay": "300",
+                        "history": "7d",
+                        "units": "uptime",
+                        "description": "The time since the network management portion of the system was last re-initialized.",
+                        "applications": [
+                            {
+                                "name": "General"
+                            }
+                        ],
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.01"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "ESXi memory available",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.6876.3.2.3.0",
+                        "key": "vmwMemAvail",
+                        "delay": "60s",
+                        "units": "KB",
+                        "description": "Amount of memory available to run Virutal Machines and to allocate for hypervisor needs. It is computed by subtracting vmwMemCOS from vmwMemSize. The result is the amount of memory available to VMs and to the hypervisor.  To get a more accurate view of memory available to VMs the following property represents the amount of resources available for the root resource pool for running virtual machines.  VIM property: effectiveMemory MOB: https://esx.example.com/mob/?moid=ha%2dcompute%2dres&doPath=summary",
+                        "applications": [
+                            {
+                                "name": "Memory"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "ESXi memory size",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.6876.3.2.1.0",
+                        "key": "vmwMemSize",
+                        "delay": "3600",
+                        "units": "KB",
+                        "description": "Amount of physical memory present on machine as provided by Hypervisor. It is computed from the sum of vmwMemCOS plus unreserved property as reported VIM subsystem. Unreserved is computed from hypervisor's total number of memory pages.  VIM Parent Container: https://esx.example.com/mob/?moid=memorySystem VIM property: unreserved MOB: https://esx.example.com/mob/?moid=memoryManagerSystem&doPath=consoleReservationInfo  For reference here two other related VIM properties: VIM property: memorySize MOB: https://esx.example.com/mob/?moid=ha%2dhost&doPath=summary%2ehardware  VIM property: totalMemory MOB: https://esx.example.com/mob/?moid=ha%2dcompute%2dres&doPath=summary",
+                        "applications": [
+                            {
+                                "name": "Memory"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "ESXi physical CPU numbers",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.6876.3.1.1.0",
+                        "key": "vmwNumCpus",
+                        "delay": "3600",
+                        "description": "Number of physical CPUs on the system.",
+                        "applications": [
+                            {
+                                "name": "Processors"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "ESXi Build",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.6876.1.4.0",
+                        "key": "vmwProdBuild.0",
+                        "delay": "3600",
+                        "description": "This identifier represents the most specific identifier. VIM Property: AboutInfo.build https://esx.example.com/mob/?moid=ServiceInstance&doPath=content%2eabout",
+                        "applications": [
+                            {
+                                "name": "General"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "ESXi name",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.6876.1.1.0",
+                        "key": "vmwProdName.0",
+                        "delay": "3600",
+                        "trends": "0",
+                        "value_type": "TEXT",
+                        "description": "This product's name. VIM Property: AboutInfo.name https://esx.example.com/mob/?moid=ServiceInstance&doPath=content%2eabout",
+                        "applications": [
+                            {
+                                "name": "General"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "ESXi Version",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.6876.1.2.0",
+                        "key": "vmwProdVersion.0",
+                        "delay": "3600",
+                        "trends": "0",
+                        "value_type": "TEXT",
+                        "description": "The product's version release identifier. Format is Major.Minor.Update VIM Property: AboutInfo.version https://esx.example.com/mob/?moid=ServiceInstance&doPath=content%2eabout",
+                        "applications": [
+                            {
+                                "name": "General"
+                            }
+                        ]
+                    }
+                ],
+                "discovery_rules": [
+                    {
+                        "name": "Disk partitions",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},hrStorageAllocationUnits]",
+                        "key": "hrStorageAlloc",
+                        "delay": "3600",
+                        "filter": {
+                            "conditions": [
+                                {
+                                    "macro": "{#SNMPVALUE}",
+                                    "value": "1048576|4194304|8388608|2097152",
+                                    "formulaid": "A"
+                                }
+                            ]
+                        },
+                        "description": "The rule will discover all dis partitions matching the global regexp \"Storage devices for SNMP discovery\".\n\n{$SNMP_COMMUNITY} is a global macro.\nhrStorageFixedDisk",
+                        "item_prototypes": [
+                            {
+                                "name": "Allocation units VMFS {#SNMPINDEX}",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": ".1.3.6.1.2.1.25.2.3.1.4.{#SNMPINDEX}",
+                                "key": "hrStorageAllocationUnits[{#SNMPINDEX}]",
+                                "delay": "3600",
+                                "applications": [
+                                    {
+                                        "name": "Disk partitions"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Description of VMFS {#SNMPINDEX}",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": ".1.3.6.1.2.1.25.2.3.1.3.{#SNMPINDEX}",
+                                "key": "hrStorageDescr[{#SNMPINDEX}]",
+                                "delay": "3600",
+                                "history": "7d",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "description": "A description of the type and instance of the storage described by this entry.",
+                                "applications": [
+                                    {
+                                        "name": "Disk partitions"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Total size of VMFS {#SNMPINDEX} in blocks",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": ".1.3.6.1.2.1.25.2.3.1.5.{#SNMPINDEX}",
+                                "key": "hrStorageSizeBlocks[{#SNMPINDEX}]",
+                                "delay": "3600",
+                                "history": "7d",
+                                "units": "blocks",
+                                "description": "The size of the storage represented by this entry, in units of hrStorageAllocationUnits. This object is writable to allow remote configuration of the size of the storage area in those cases where such an operation makes sense and is possible on the underlying system. For example, the amount of main memory allocated to a buffer pool might be modified or the amount of disk space allocated to virtual memory might be modified.",
+                                "applications": [
+                                    {
+                                        "name": "Disk partitions"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Total size of VMFS {#SNMPINDEX}",
+                                "type": "CALCULATED",
+                                "key": "hrStorageSize[{#SNMPINDEX}]",
+                                "delay": "3600",
+                                "history": "7d",
+                                "units": "Bytes",
+                                "params": "last(\"hrStorageSizeBlocks[{#SNMPINDEX}]\") * last(\"hrStorageAllocationUnits[{#SNMPINDEX}]\")",
+                                "description": "The size of the storage represented by this entry, in units of hrStorageAllocationUnits. This object is writable to allow remote configuration of the size of the storage area in those cases where such an operation makes sense and is possible on the underlying system. For example, the amount of main memory allocated to a buffer pool might be modified or the amount of disk space allocated to virtual memory might be modified.",
+                                "applications": [
+                                    {
+                                        "name": "Disk partitions"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Used disk on VMFS {#SNMPINDEX} in blocks",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": ".1.3.6.1.2.1.25.2.3.1.6.{#SNMPINDEX}",
+                                "key": "hrStorageUsedBlocks[{#SNMPINDEX}]",
+                                "delay": "60",
+                                "units": "MB",
+                                "description": "The amount of the storage represented by this entry that is allocated, in units of hrStorageAllocationUnits.",
+                                "applications": [
+                                    {
+                                        "name": "Disk partitions"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Used disk on VMFS {#SNMPINDEX}",
+                                "type": "CALCULATED",
+                                "key": "hrStorageUsed[{#SNMPINDEX}]",
+                                "delay": "60",
+                                "units": "Bytes",
+                                "params": "last(\"hrStorageUsedBlocks[{#SNMPINDEX}]\") * last(\"hrStorageAllocationUnits[{#SNMPINDEX}]\")",
+                                "description": "The amount of the storage represented by this entry that is allocated, in units of hrStorageAllocationUnits.",
+                                "applications": [
+                                    {
+                                        "name": "Disk partitions"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Used Space % on VMFS {#SNMPINDEX}",
+                                "type": "CALCULATED",
+                                "key": "vmfs.FreeSpacePer[{#SNMPINDEX}]",
+                                "delay": "300",
+                                "value_type": "FLOAT",
+                                "units": "%",
+                                "params": "last(\"hrStorageUsed[{#SNMPINDEX}]\")/last(\"hrStorageSize[{#SNMPINDEX}]\")*100",
+                                "applications": [
+                                    {
+                                        "name": "Disk partitions"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Free Space on VMFS {#SNMPINDEX}",
+                                "type": "CALCULATED",
+                                "key": "vmfs.FreeSpace[{#SNMPINDEX}]",
+                                "delay": "300",
+                                "units": "Bytes",
+                                "params": "last(\"hrStorageSize[{#SNMPINDEX}]\")-last(\"hrStorageUsed[{#SNMPINDEX}]\")",
+                                "applications": [
+                                    {
+                                        "name": "Disk partitions"
+                                    }
+                                ]
+                            }
+                        ],
+                        "trigger_prototypes": [
+                            {
+                                "expression": "{SNMP OS ESXi:hrStorageUsedBlocks[{#SNMPINDEX}].last(0)} / {SNMP OS ESXi:hrStorageSizeBlocks[{#SNMPINDEX}].last(0)} > 0.9",
+                                "name": "Free disk space is less than 10% on volume {#SNMPINDEX}",
+                                "priority": "AVERAGE"
+                            },
+                            {
+                                "expression": "{SNMP OS ESXi:hrStorageUsedBlocks[{#SNMPINDEX}].last(0)} / {SNMP OS ESXi:hrStorageSizeBlocks[{#SNMPINDEX}].last(0)} > 0.8",
+                                "name": "Free disk space is less than 20% on volume {#SNMPINDEX}",
+                                "priority": "WARNING"
+                            }
+                        ],
+                        "graph_prototypes": [
+                            {
+                                "name": "Storage Use  {#SNMPINDEX}",
+                                "type": "STACKED",
+                                "graph_items": [
+                                    {
+                                        "color": "C80000",
+                                        "item": {
+                                            "host": "SNMP OS ESXi",
+                                            "key": "vmfs.FreeSpacePer[{#SNMPINDEX}]"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Memory",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},hrStorageDescr]",
+                        "key": "hrStorageDescr",
+                        "delay": "3600",
+                        "filter": {
+                            "conditions": [
+                                {
+                                    "macro": "{#SNMPVALUE}",
+                                    "value": "Real Memory",
+                                    "formulaid": "A"
+                                }
+                            ]
+                        },
+                        "item_prototypes": [
+                            {
+                                "name": "Used Memory %",
+                                "type": "CALCULATED",
+                                "key": "hrMemoryFreePerc[{#SNMPINDEX}]",
+                                "delay": "60",
+                                "value_type": "FLOAT",
+                                "units": "%",
+                                "params": "last(\"hrMemoryUsed[{#SNMPINDEX}]\")/\nlast(\"hrMemoryTotal[{#SNMPINDEX}]\")*100",
+                                "applications": [
+                                    {
+                                        "name": "Memory"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Free Memory",
+                                "type": "CALCULATED",
+                                "key": "hrMemoryFree[{#SNMPINDEX}]",
+                                "delay": "60",
+                                "units": "Bytes",
+                                "params": "last(\"hrMemoryTotal[{#SNMPINDEX}]\")-last(\"hrMemoryUsed[{#SNMPINDEX}]\")",
+                                "applications": [
+                                    {
+                                        "name": "Memory"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Total Memory",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": ".1.3.6.1.2.1.25.2.2.0",
+                                "key": "hrMemoryTotal[{#SNMPINDEX}]",
+                                "delay": "300",
+                                "units": "Bytes",
+                                "applications": [
+                                    {
+                                        "name": "Memory"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Memory Used",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": ".1.3.6.1.2.1.25.2.3.1.6.{#SNMPINDEX}",
+                                "key": "hrMemoryUsed[{#SNMPINDEX}]",
+                                "delay": "60",
+                                "units": "Bytes",
+                                "applications": [
+                                    {
+                                        "name": "Memory"
+                                    }
+                                ],
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1024"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "trigger_prototypes": [
+                            {
+                                "expression": "{SNMP OS ESXi:hrMemoryUsed[{#SNMPINDEX}].last(0)} / {SNMP OS ESXi:hrMemoryTotal[{#SNMPINDEX}].last(0)} > 0.9",
+                                "name": "Available Memory is less than 10% on $1",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Environment discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.6876.4.20.3.1.1]",
+                        "key": "vmwEnvIndex",
+                        "delay": "3600",
+                        "filter": {
+                            "conditions": [
+                                {
+                                    "macro": "{#SNMPVALUE}",
+                                    "value": "1048576|4194304|8388608|2097152",
+                                    "formulaid": "A"
+                                }
+                            ]
+                        },
+                        "description": "A unique identifier that does not persist across management restarts",
+                        "item_prototypes": [
+                            {
+                                "name": "ESXi subsystem {#SNMPINDEX} description",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.6876.4.20.3.1.4.{#SNMPINDEX}",
+                                "key": "vmwEventDescription[{#SNMPINDEX}]",
+                                "delay": "60s",
+                                "trends": "0",
+                                "value_type": "TEXT",
+                                "description": "Human readable description of this event",
+                                "applications": [
+                                    {
+                                        "name": "Environment"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ESXi subsystem {#SNMPINDEX} status",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.6876.4.20.3.1.3.{#SNMPINDEX}",
+                                "key": "vmwSubsystemStatus[{#SNMPINDEX}]",
+                                "delay": "60s",
+                                "description": "Last reported state of this component",
+                                "applications": [
+                                    {
+                                        "name": "Environment"
+                                    }
+                                ],
+                                "valuemap": {
+                                    "name": "ESXi subsystem status"
+                                },
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{last()}<>2",
+                                        "name": "ESXi subsystem {#SNMPINDEX} on {HOST.NAME} status is not OK",
+                                        "priority": "HIGH"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "ESXi subsystem {#SNMPINDEX} type",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.6876.4.20.3.1.2.{#SNMPINDEX}",
+                                "key": "vmwSubsystemType[{#SNMPINDEX}]",
+                                "delay": "60s",
+                                "description": "Hardware component reporting environmental state",
+                                "applications": [
+                                    {
+                                        "name": "Environment"
+                                    }
+                                ],
+                                "valuemap": {
+                                    "name": "ESXi subsystem type"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Virtual Machines",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.6876.2.1.1.2]",
+                        "key": "vmwVmDisplayName",
+                        "delay": "3600",
+                        "description": "Name by which this vm is displayed. It is not guaranteed to be unique. MOB: https://esx.example.com/mob/?moid=vmwVmIdx&doPath=summary%2eguest",
+                        "item_prototypes": [
+                            {
+                                "name": "VM {#SNMPVALUE} CPUs Number",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.6876.2.1.1.9.{#SNMPINDEX}",
+                                "key": "vmwVMCPUs.[{#SNMPINDEX}]",
+                                "delay": "60s",
+                                "description": "Number of virtual CPUs assigned to this virtual machine. VIM Property: numCPU MOB: https://esx.example.com/mob/?moid=vmwVmIdx&doPath=config%2ehardware",
+                                "applications": [
+                                    {
+                                        "name": "Virtual Machines"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "VM {#SNMPVALUE} Guest OS",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": ".1.3.6.1.4.1.6876.2.1.1.4.{#SNMPINDEX}",
+                                "key": "vmwVMGuestOS.[{#SNMPINDEX}]",
+                                "delay": "3600",
+                                "trends": "0",
+                                "value_type": "TEXT",
+                                "description": "Operating system running on this vm. This value corresponds to the value specified when creating the VM and unless set correctly may differ from the actual OS running. Will return one of the values if set in order: Vim.Vm.GuestInfo.guestFullName Vim.Vm.GuestInfo.guestId Vim.Vm.GuestInfo.guestFamily MOB: https://esx.example.com/mob/?moid=vmwVmIdx&doPath=guest where moid = vmwVmIdx. If VMware Tools is not running, value will be of form 'E: error message'",
+                                "applications": [
+                                    {
+                                        "name": "Virtual Machines"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "VM {#SNMPVALUE} Guest State",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": ".1.3.6.1.4.1.6876.2.1.1.8.{#SNMPINDEX}",
+                                "key": "vmwVMGuestState.[{#SNMPINDEX}]",
+                                "delay": "60s",
+                                "trends": "0",
+                                "value_type": "TEXT",
+                                "description": "Operation mode of guest operating system. Values include: running  - Guest is running normally. shuttingdown - Guest has a pending shutdown command. resetting - Guest has a pending reset command. standby - Guest has a pending standby command. notrunning - Guest is not running. unknown - Guest information is not available. VIM Property: guestState MOB: https://esx.example.com/mob/?moid=vmwVmIdx&doPath=guest",
+                                "applications": [
+                                    {
+                                        "name": "Virtual Machines"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "expression": "{regexp(\"not running\")}=1",
+                                        "name": "Guest Tools not running on {#SNMPVALUE}",
+                                        "priority": "INFO"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "VM {#SNMPVALUE} Memory Size",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.6876.2.1.1.5.{#SNMPINDEX}",
+                                "key": "vmwVMMemSize.[{#SNMPINDEX}]",
+                                "delay": "60s",
+                                "units": "MB",
+                                "description": "Memory configured for this virtual machine. Memory > MAX Integer32 is reported as max integer32. VIM Property: memoryMB MOB: https://esx.example.com/mob/?moid=vmwVmIdx&doPath=config%2ehardware",
+                                "applications": [
+                                    {
+                                        "name": "Virtual Machines"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "VM {#SNMPVALUE} Power State",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": ".1.3.6.1.4.1.6876.2.1.1.6.{#SNMPINDEX}",
+                                "key": "vmwVMState.[{#SNMPINDEX}]",
+                                "delay": "60s",
+                                "trends": "0",
+                                "value_type": "TEXT",
+                                "description": "Power state of the virtual machine. VIM Property: powerState MOB: https://esx.example.com/mob/?moid=vmwVmIdx&doPath=summary%2eruntime",
+                                "applications": [
+                                    {
+                                        "name": "Virtual Machines"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "value_maps": [
+            {
+                "name": "ESXi subsystem status",
+                "mappings": [
+                    {
+                        "value": "1",
+                        "newvalue": "unknown"
+                    },
+                    {
+                        "value": "2",
+                        "newvalue": "normal"
+                    },
+                    {
+                        "value": "3",
+                        "newvalue": "marginal"
+                    },
+                    {
+                        "value": "4",
+                        "newvalue": "critical"
+                    },
+                    {
+                        "value": "5",
+                        "newvalue": "failed"
+                    }
+                ]
+            },
+            {
+                "name": "ESXi subsystem type",
+                "mappings": [
+                    {
+                        "value": "1",
+                        "newvalue": "unknown"
+                    },
+                    {
+                        "value": "2",
+                        "newvalue": "chassis"
+                    },
+                    {
+                        "value": "3",
+                        "newvalue": "powerSupply"
+                    },
+                    {
+                        "value": "4",
+                        "newvalue": "fan"
+                    },
+                    {
+                        "value": "5",
+                        "newvalue": "cpu"
+                    },
+                    {
+                        "value": "6",
+                        "newvalue": "memory"
+                    },
+                    {
+                        "value": "7",
+                        "newvalue": "battery"
+                    },
+                    {
+                        "value": "8",
+                        "newvalue": "temperatureSensor"
+                    },
+                    {
+                        "value": "9",
+                        "newvalue": "raidController"
+                    },
+                    {
+                        "value": "10",
+                        "newvalue": "voltage"
+                    }
+                ]
+            }
+        ]
+    }
+}

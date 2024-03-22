@@ -1,0 +1,11 @@
+[Zabbix-Non-Supported]
+name=Zabbix Non-Supported
+baseurl=file:///mnt/usb/DEPOTS/repo.zabbix.com/non-supported/rhel/8/x86_64/
+gpgcheck=0
+enabled=1
+
+[Zabbix-5.1]
+name=Zabbix 5.1
+baseurl=file:///mnt/usb/DEPOTS/repo.zabbix.com/zabbix/5.1/rhel/8/x86_64/
+gpgcheck=0
+enabled=1

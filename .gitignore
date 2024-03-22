@@ -1,0 +1,17 @@
+configurations/*
+ressources/certificates/*.crt
+ressources/certificates/*.key
+ressources/gpo/*
+ressources/licences/*.lic
+ressources/xca/xca-portable-2.4.0
+ressources/wdac/*/*.xml
+ressources/tasks/*.ps1
+ressources/palo-alto/candidate-config.xml
+ressources/switch/*.txt
+ressources/switch/*/*.txt
+ressources/pfsense/*.backup
+ressources/cisco/*.conf
+ressources/cisco/*/*.conf
+ressources/tree/etc/selinux/modules/*.pp
+ressources/tree/etc/pki/tls/certs/*.crt
+ressources/tree/etc/pki/tls/private/*.key

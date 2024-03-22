@@ -1,0 +1,11 @@
+[Epel-Everything]
+name=Epel Everything
+baseurl=file:///mnt/usb/DEPOTS/mirrors.rit.edu/fedora/epel/8/Everything/x86_64/
+gpgcheck=0
+enabled=1
+
+[Epel-Modular]
+name=Epel Modular
+baseurl=file:///mnt/usb/DEPOTS/mirrors.rit.edu/fedora/epel/8/Modular/x86_64/
+gpgcheck=0
+enabled=1
